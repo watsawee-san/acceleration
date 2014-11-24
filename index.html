@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+	<title>Test Accelerometer</title>
+	<script>
+		function getAcceleration(){
+			window.addEventListener("devicemotion", accelerometerUpdate);
+		}
+		function accelerometerUpdate(event){
+			//window.ondevicemotion = function(event) {  
+				var accelerationX = event.accelerationIncludingGravity.x;  
+				var accelerationY = event.accelerationIncludingGravity.y;  
+				var accelerationZ = event.accelerationIncludingGravity.z;
+
+				var linear_x = event.acceleration.x;
+				var linear_y = event.acceleration.y;
+				var linear_z = event.acceleration.z;
+
+				var div1 = document.getElementById("display1").innerHTML = "accelerationX = "+accelerationX+" <br> accelerationY = "+accelerationY+" <br> accelerationZ = "+accelerationZ;
+
+				var div2 = document.getElementById("display2").innerHTML = "linear_x = "+linear_x+" <br> linear_y = "+linear_y+" <br> linear_z = "+linear_z;
+			//}
+		}
+		
+		function removeListener(){
+			//window.removeEventListener("ondevicemotion", null);
+			window.removeEventListener("devicemotion", accelerometerUpdate);
+		}
+
+	</script>
+ </head>
+ <body>
+	<button onClick="getAcceleration()">Start retrieving acceleration</button><br><br>
+	<button onClick="removeListener()">Stop retrieving acceleration</button><br><br>
+	<div id="display1" style="color:red">
+	</div>
+
+	<div id="display2" style="color:blue">
+	</div>
+ </body>
+</html>
